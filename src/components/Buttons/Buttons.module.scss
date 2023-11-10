@@ -13,7 +13,6 @@
 
 .normalButton {
   border-radius: 40px;
-  background-color: #b9b9b9;
   padding: 6px 36px;
   color: #fff;
   width: 130px;
@@ -26,8 +25,13 @@
   }
 }
 
-.base {
+.disabled {
   background-color: #b9b9b9;
+  cursor: not-allowed;
+}
+
+.base {
+  background-color: #000;
 }
 
 .danger {

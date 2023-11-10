@@ -6,7 +6,7 @@ interface ButtonProps extends ComponentProps<"button"> {
   children?: JSX.Element | string;
   className?: string;
   onClick?: () => void;
-  variant?: "base" | "danger" | "success";
+  variant?: "base" | "danger" | "success" | "disabled";
   props?: any;
 }
 

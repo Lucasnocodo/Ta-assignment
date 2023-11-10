@@ -107,9 +107,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
           cancel
         </Button>
         <Button
-          variant={`${isDisabled ? "base" : "success"}`}
+          variant={`${isDisabled ? "disabled" : "success"}`}
           type="submit"
-          disabled={isDisabled}
         >
           Save
         </Button>
