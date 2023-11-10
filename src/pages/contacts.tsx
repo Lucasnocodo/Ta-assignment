@@ -6,9 +6,9 @@ import { ContactModelType } from "../types/contact";
 import styles from "./ContactsPage.module.scss";
 import Modal from "../components/Modal/Modal";
 import ContactForm from "../components/ContactForm/ContactForm";
-import NavBar from "@/components/NavBar/NavBar";
-import { IconButton } from "@/components/Buttons/Buttons";
-import { Add, Sort90, Sort09, SortZA, SortAZ } from "@/components/Icons/Icons";
+import NavBar from "../components/NavBar/NavBar";
+import { IconButton } from "../components/Buttons/Buttons";
+import { Add, Sort90, Sort09, SortZA, SortAZ } from "../components/Icons/Icons";
 
 const initCardData = {
   firstName: "",
@@ -133,6 +133,7 @@ const ContactsPage = () => {
       <NavBar heading={"Contacts"} link={{ url: "/", title: "Contact List" }}>
         <IconButton
           onClick={handleAddContact}
+          data-testid="add-button"
           icon={<Add width={40} height={40} />}
         />
         <div className={styles.selectContainer}>

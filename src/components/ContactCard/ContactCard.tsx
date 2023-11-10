@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ContactCard.module.scss";
 import { ContactModelType } from "../../types/contact";
-import { Avatar, Delete, Edit } from "@/components/Icons/Icons";
+import { Avatar, Delete, Edit } from "../../components/Icons/Icons";
 import { IconButton } from "../Buttons/Buttons";
 
 interface CardProps {
@@ -24,10 +24,12 @@ const ContactCard = ({ contact, onDelete, onEditContact }: CardProps) => {
             <div className={styles.contactActions}>
               <IconButton
                 icon={<Edit />}
+                data-testid="edit-button"
                 onClick={() => onEditContact(contact.id)}
               />
               <IconButton
                 icon={<Delete />}
+                data-testid="delete-button"
                 onClick={() => onDelete(contact.id)}
               />
             </div>

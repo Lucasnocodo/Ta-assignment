@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ContactModelType, Contact } from "../../types/contact";
 import styles from "./ContactForm.module.scss";
-import { Avatar } from "@/components/Icons/Icons";
-import { Button } from "@/components/Buttons/Buttons";
+import { Avatar } from "../../components/Icons/Icons";
+import { Button } from "../../components/Buttons/Buttons";
 
 interface ContactFormProps {
   contact: ContactModelType;

@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 
 interface IconProps extends ComponentProps<"svg"> {
   className?: string;
