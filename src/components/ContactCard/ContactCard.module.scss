@@ -1,0 +1,76 @@
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 16px;
+  background-color: white;
+  width: 450px;
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
+
+  .upperContent {
+    display: flex;
+    gap: 19px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+  }
+  .Avatar {
+    min-width: 60px;
+  }
+  .contactInfo {
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: calc(100% - 80px);
+    .name {
+      color: black;
+      font-size: 1.5rem;
+      max-width: 230px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      @media (max-width: 600px) {
+        max-width: calc(100% - 136px);
+        font-size: 1rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: black;
+    }
+    .firstRow {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      padding-top: 3px;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .contactActions {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  .description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactCard {
+    width: 100%;
+
+    .contact-info {
+      flex-grow: 1;
+      padding: 0 10px;
+    }
+  }
+}

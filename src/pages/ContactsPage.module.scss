@@ -1,0 +1,39 @@
+.contactsContainer {
+  padding: 20px 80px;
+  display: flex;
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 23px;
+  }
+}
+
+.selectContainer {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    outline: none;
+    color: transparent;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.contactsList {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  @media (max-width: 1080px) {
+    width: 100%;
+    justify-content: center;
+  }
+}

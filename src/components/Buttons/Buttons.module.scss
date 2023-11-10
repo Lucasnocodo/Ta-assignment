@@ -1,0 +1,39 @@
+.iconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.normalButton {
+  border-radius: 40px;
+  background-color: #b9b9b9;
+  padding: 6px 36px;
+  color: #fff;
+  width: 130px;
+  height: 33px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.base {
+  background-color: #b9b9b9;
+}
+
+.danger {
+  background-color: #ed341b;
+}
+
+.success {
+  background-color: #66ad2e;
+}
