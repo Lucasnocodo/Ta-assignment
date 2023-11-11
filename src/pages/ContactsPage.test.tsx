@@ -2,10 +2,15 @@ import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import ContactsPage from "./contacts";
 import React from "react";
+import { ToastProvider } from "../contexts/ToastContext";
 
 describe("ContactsPage", () => {
   test("renders without crashing", async () => {
-    render(<ContactsPage />);
+    render(
+      <ToastProvider>
+        <ContactsPage contacts={[]} />
+      </ToastProvider>
+    );
     expect(screen.getByText("Contacts")).toBeInTheDocument();
   });
 
@@ -19,7 +24,11 @@ describe("ContactsPage", () => {
         update: jest.fn(),
       },
     }));
-    render(<ContactsPage />);
+    render(
+      <ToastProvider>
+        <ContactsPage contacts={[]} />
+      </ToastProvider>
+    );
     const addButton = screen.getByTestId("add-button");
     fireEvent.click(addButton);
     expect(screen.getByTestId("form-modal")).toBeInTheDocument();
@@ -34,7 +43,11 @@ describe("ContactsPage", () => {
         update: jest.fn(),
       },
     }));
-    render(<ContactsPage />);
+    render(
+      <ToastProvider>
+        <ContactsPage contacts={[]} />
+      </ToastProvider>
+    );
     const addButton = screen.getByTestId("add-button");
     fireEvent.click(addButton);
     expect(screen.getByTestId("form-modal")).toBeInTheDocument();
