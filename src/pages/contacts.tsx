@@ -26,6 +26,17 @@ const sortOptions = [
   { value: "asc-name", label: "Name (A-Z)", icon: <SortAZ /> },
   { value: "desc-name", label: "Name (Z-A)", icon: <SortZA /> },
 ];
+
+export const getServerSideProps = async () => {
+  try {
+    let contacts = await contactApi.getAll();
+    return { props: { contacts } };
+  } catch (error) {
+    console.error(error);
+    return { props: { contacts: [] } };
+  }
+};
+
 const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [contactsList, setContactsList] =
@@ -186,16 +197,6 @@ const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
       </div>
     </>
   );
-};
-
-export const getServerSideProps = async () => {
-  try {
-    let contacts = await contactApi.getAll();
-    return { props: { contacts } };
-  } catch (error) {
-    console.error(error);
-    return { props: { contacts: [] } };
-  }
 };
 
 export default ContactsPage;

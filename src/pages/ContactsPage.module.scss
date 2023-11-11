@@ -27,10 +27,13 @@
   }
 }
 .optionItem {
-  color: red;
+  color: black;
+  background-color: white;
 }
+
 .emptyContacts {
   font-size: 40px;
+  color: black;
 }
 .contactsList {
   display: flex;
