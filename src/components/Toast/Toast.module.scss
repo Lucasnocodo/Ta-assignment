@@ -1,0 +1,40 @@
+.toast {
+  min-width: 250px;
+  border-radius: 4px;
+  padding: 15px 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideIn 0.5s, fadeOut 0.5s 4.5s;
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(0px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(20);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .closeButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+}

@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClick={handleOverlayClick}
       ref={modalRef}
       tabIndex={-1}
-      data-testId="form-modal"
+      data-testid="form-modal"
     >
       <div
         className={styles.modalContent}

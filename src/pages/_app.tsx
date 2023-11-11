@@ -1,10 +1,17 @@
+import React from "react";
 import { AppProps } from "next/app";
-import NavBar from "../components/NavBar/NavBar";
+import { ToastProvider } from "../contexts/ToastContext";
+import ToastContainer from "../components/Toast/ToastContainer";
 
 import "../styles/globals.scss";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />;
+  return (
+    <ToastProvider>
+      <Component {...pageProps} />
+      <ToastContainer />
+    </ToastProvider>
+  );
 };
 
 export default MyApp;

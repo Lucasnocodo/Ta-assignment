@@ -14,6 +14,7 @@ export const contactApi = {
       const contacts = response.data.data.map((contact: Contact) =>
         new ContactModel(contact).toJSON()
       );
+
       return contacts;
     } catch (error) {
       throw error;
@@ -23,16 +24,19 @@ export const contactApi = {
     const response = await apiClient.post("/api/contacts", {
       contact: contactData,
     });
+
     return new ContactModel(response.data.data).toJSON();
   },
   update: async (contactId: number, contactData: Contact) => {
     const response = await apiClient.patch(`/api/contacts/${contactId}`, {
       info: contactData,
     });
+
     return new ContactModel(response.data.data).toJSON();
   },
   delete: async (id: number) => {
     const response = await apiClient.delete(`/api/contacts/${id}`);
+
     return response.data;
   },
 };

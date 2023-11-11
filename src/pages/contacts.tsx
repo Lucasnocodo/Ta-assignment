@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { GetServerSideProps } from "next";
+
 import ContactCard from "../components/ContactCard/ContactCard";
 import { contactApi } from "../services/apiService";
 import { Contact } from "../types/contact";
@@ -9,6 +11,7 @@ import ContactForm from "../components/ContactForm/ContactForm";
 import NavBar from "../components/NavBar/NavBar";
 import { IconButton } from "../components/Buttons/Buttons";
 import { Add, Sort90, Sort09, SortZA, SortAZ } from "../components/Icons/Icons";
+import ToastContext from "../contexts/ToastContext";
 
 const initCardData = {
   firstName: "",
@@ -25,13 +28,20 @@ const sortOptions = [
   { value: "asc-name", label: "Name (A-Z)", icon: <SortAZ /> },
   { value: "desc-name", label: "Name (Z-A)", icon: <SortZA /> },
 ];
-const ContactsPage = () => {
+const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [contactsList, setContactsList] = useState<ContactModelType[]>([]);
+  const [contactsList, setContactsList] =
+    useState<ContactModelType[]>(contacts);
   const [formType, setFormType] = useState("");
   const [selectedCard, setSelectedCard] =
     useState<ContactModelType>(initCardData);
   const [sort, setSort] = useState("asc-id");
+  const toastContext = useContext(ToastContext);
+
+  if (!toastContext) {
+    throw new Error("ToastContainer must be used within a ToastProvider");
+  }
+  const { addToast } = toastContext;
 
   const handleAddContact = () => {
     setModalOpen(true);
@@ -52,9 +62,10 @@ const ContactsPage = () => {
     try {
       const addedContact = await contactApi.add(newContact);
       setContactsList((pre) => [...pre, addedContact]);
-      handleCloseModal();
+      addToast("add contact success");
     } catch (error) {
       console.error("Failed to add contact", error);
+      addToast("add contact failed");
     } finally {
       handleCloseModal();
     }
@@ -66,7 +77,9 @@ const ContactsPage = () => {
       setContactsList((pre) =>
         pre.filter((contact) => contact.id !== contactId)
       );
+      addToast("delete contact success");
     } catch (error) {
+      addToast("delete contact failed");
       console.error("Failed to delete contact", error);
     }
   };
@@ -80,8 +93,10 @@ const ContactsPage = () => {
           contact.id === contactId ? updatedContact : contact
         )
       );
+      addToast("update contact success");
     } catch (error) {
       console.error("Failed to update contact", error);
+      addToast("update contact failed");
     } finally {
       handleCloseModal();
     }
@@ -107,18 +122,18 @@ const ContactsPage = () => {
     setContactsList(sortedContacts);
   };
 
-  const fetchContacts = async () => {
-    try {
-      const fetchedContacts = await contactApi.getAll();
-      setContactsList(fetchedContacts);
-    } catch (error) {
-      console.error("Failed to fetch contacts", error);
-    }
-  };
+  // const fetchContacts = async () => {
+  //   try {
+  //     const fetchedContacts = await contactApi.getAll();
+  //     setContactsList(fetchedContacts);
+  //   } catch (error) {
+  //     console.error("Failed to fetch contacts", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
+  // useEffect(() => {
+  //   fetchContacts();
+  // }, []);
 
   const renderSortIcon = () => {
     const sortOption = sortOptions.find((option) => option.value === sort);
@@ -163,46 +178,36 @@ const ContactsPage = () => {
           />
         </Modal>
         <div className={styles.contactsList}>
-          {contactsList.map((contact) => (
-            <ContactCard
-              key={contact.id}
-              contact={contact}
-              onDelete={deleteContact}
-              onEditContact={handleEditContact}
-            />
-          ))}
+          {contactsList.length === 0 ? (
+            <div className={styles.emptyContacts}>
+              <p>No contacts found</p>
+            </div>
+          ) : (
+            <>
+              {contactsList.map((contact) => (
+                <ContactCard
+                  key={contact.id}
+                  contact={contact}
+                  onDelete={deleteContact}
+                  onEditContact={handleEditContact}
+                />
+              ))}
+            </>
+          )}
         </div>
       </div>
     </>
   );
 };
 
-// // pages/contacts.tsx
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { query } = context;
-//   const sort = query.sort === "asc" ? "asc" : "desc"; // 默认为降序
-
-//   try {
-//     let contacts = await contactApi.getAll();
-//     // 根据 fullName 对联系人进行排序
-//     contacts = contacts
-//       .sort((a, b) => {
-//         const fullNameA = `${a.first_name} ${a.last_name}`.toLowerCase();
-//         const fullNameB = `${b.first_name} ${b.last_name}`.toLowerCase();
-
-//         if (sort === "asc") {
-//           return fullNameA.localeCompare(fullNameB);
-//         } else {
-//           return fullNameB.localeCompare(fullNameA);
-//         }
-//       })
-//       .map((contact: Contact) => new ContactModel(contact).toJSON());
-
-//     return { props: { contacts } };
-//   } catch (error) {
-//     console.error(error);
-//     return { props: { contacts: [] } };
-//   }
-// };
+export const getServerSideProps = async () => {
+  try {
+    let contacts = await contactApi.getAll();
+    return { props: { contacts } };
+  } catch (error) {
+    console.error(error);
+    return { props: { contacts: [] } };
+  }
+};
 
 export default ContactsPage;
