@@ -3,7 +3,6 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ContactCard from "../components/ContactCard/ContactCard";
 
-// Mock the contact data
 const mockContact = {
   id: 1,
   fullName: "John Doe",

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./ToastContainer.module.scss";
-import ToastContext from "../../contexts/ToastContext"; // 确保路径是正确的
+import ToastContext from "../../contexts/ToastContext";
 import ToastItem from "./Toast";
 
 const ToastContainer: React.FC = () => {

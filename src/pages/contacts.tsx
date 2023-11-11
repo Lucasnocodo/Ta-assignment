@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { GetServerSideProps } from "next";
-
+import React, { useState, useContext } from "react";
 import ContactCard from "../components/ContactCard/ContactCard";
 import { contactApi } from "../services/apiService";
 import { Contact } from "../types/contact";
@@ -84,7 +82,6 @@ const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
     }
   };
 
-  // 修改联系人信息
   const editContact = async (contactId: number, updatedInfo: Contact) => {
     try {
       const updatedContact = await contactApi.update(contactId, updatedInfo);
@@ -122,19 +119,6 @@ const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
     setContactsList(sortedContacts);
   };
 
-  // const fetchContacts = async () => {
-  //   try {
-  //     const fetchedContacts = await contactApi.getAll();
-  //     setContactsList(fetchedContacts);
-  //   } catch (error) {
-  //     console.error("Failed to fetch contacts", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchContacts();
-  // }, []);
-
   const renderSortIcon = () => {
     const sortOption = sortOptions.find((option) => option.value === sort);
     if (sortOption) {
@@ -159,7 +143,11 @@ const ContactsPage = ({ contacts }: { contacts: ContactModelType[] }) => {
             className={styles.sortSelect}
           >
             {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                className={styles.optionItem}
+              >
                 {option.label}
               </option>
             ))}

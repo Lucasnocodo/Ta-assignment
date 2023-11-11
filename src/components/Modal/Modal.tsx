@@ -39,10 +39,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       tabIndex={-1}
       data-testid="form-modal"
     >
-      <div
-        className={styles.modalContent}
-        onClick={(e) => e.stopPropagation()} // Prevent click from closing the modal
-      >
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>
           &times;
         </button>
