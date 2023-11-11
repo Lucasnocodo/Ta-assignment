@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import ContactsPage from "./contacts";
+import { fireEvent, render, screen } from "@testing-library/react";
+import ContactsPage from "../pages/contacts";
 import React from "react";
 import { ToastProvider } from "../contexts/ToastContext";
 

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ContactCard from "./ContactCard";
+import ContactCard from "../components/ContactCard/ContactCard";
 
 // Mock the contact data
 const mockContact = {

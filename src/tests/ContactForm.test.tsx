@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ContactForm from "./ContactForm";
+import ContactForm from "../components/ContactForm/ContactForm";
 
 const mockAddContact = jest.fn();
 const mockEditContact = jest.fn();

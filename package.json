@@ -16,6 +16,11 @@
     "react-dom": "^18",
     "sass": "^1.69.5"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
